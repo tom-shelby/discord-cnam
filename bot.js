@@ -70,7 +70,7 @@ function commandEdt(msg)
                         
                     }else {
                         if(strId.includes('EvtRange')) {
-                            message+=`* ${$span.text()}`.padStart(30);
+                            message+=`* ${$span.text()}`.padEnd(30);
                         }
                         if(strId.includes('EvtType')) {
                             let matiereID = " ";
