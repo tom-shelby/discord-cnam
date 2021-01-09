@@ -37,7 +37,7 @@ function commandEdt(msg)
             let planningInfos = `:calendar: ${$('#ctl00_MainContent_lblNavRange').text()}`;
             // console.log($('title').text());
             // channel.send($('title').text());
-            console.log(`PLANNING INFOS: ${planningInfos.toString()}`);
+            // console.log(`PLANNING INFOS: ${planningInfos.toString()}`);
 
            
 
@@ -53,7 +53,7 @@ function commandEdt(msg)
                 let strId =  $span.attr('id').toString();
                 
                 // console.log(this);
-                console.log($span.attr('id'));
+                // console.log($span.attr('id'));
                 
                 if(strId.includes('Day')||strId.includes('EvtRange')||strId.includes('EvtType')||strId.includes('EvtExamen')||strId.includes('EvtSalle')) {
                     if(strId.includes('Day')) {
@@ -77,13 +77,13 @@ function commandEdt(msg)
                             let possibleLink = $span.siblings('a').toArray();
                             if(possibleLink.length > 0) {
                                 matiereID = $(possibleLink).text();
-                                console.log(matiereID);
+                                // console.log(matiereID);
                             }
 
                             let possibleExamen = $span.siblings('span').toArray();
                             if(possibleExamen.length > 0) {
                                 if($(possibleExamen).attr('id').toString().includes('EvtExamen')) {
-                                    console.log("has sibling exam")
+                                    // console.log("has sibling exam")
 
                                     message+=`EXAMEN | ${config['UE'][matiereID]}`.padEnd(60);
                                 }
@@ -95,40 +95,10 @@ function commandEdt(msg)
                             message+=`${$span.text()}\n`.padStart(10);
                         }
                     }
-                    
-
-
-                //     if(!strId.includes('Day')) {
-                //         // console.log("isHeader");
-
-                //         if(strId.includes('EvtType')||strId.includes('EvtExamen')) {
-                //             if(strId.includes('EvtType') && matiereID != null) {
-                //                 message+=`${config['UE'][matiereID]}`;
-                //             }
-                //             if(strId.includes('EvtExamen')) {
-                //                 message+=`| EXAMEN`.padStart(30);
-                //             }
-                //         } else {
-                //             message += `${$span.text()}`.padStart(30);
-                //         }
-
-                //         if(insertLineBreakInd >= 2) {
-                //             message+="\n";
-                //             insertLineBreakInd = 0;
-                //         } else {
-                //             insertLineBreakInd++;
-                //         }
-                //     }else {
-                //         message+=`\n${$span.text()}\n`.padStart(50);
-                //     }
                 }
             });
             message+="```";
-
-
-
-
-            console.log(message);
+            // console.log(message);
             trySendToChannel(planningInfos, channel);
             trySendToChannel(message, channel);
         }
