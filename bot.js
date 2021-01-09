@@ -11,7 +11,7 @@ console.log('Loading config...')
 const config = JSON.parse(fs.readFileSync('config.json'));
 console.log('Config loaded !');
 
-console.log(config);
+// console.log(config);
 function trySendToChannel(msg = String, channel = Discord.Channel )
 {
     if (msg != null && channel != null && msg.length > 0) {
@@ -34,7 +34,7 @@ function commandEdt(msg)
 
             var $ = _cheerio.load(body);
             
-            let planningInfos = $('#ctl00_MainContent_lblNavRange').text();
+            let planningInfos = `:calendar: ${$('#ctl00_MainContent_lblNavRange').text()}`;
             // console.log($('title').text());
             // channel.send($('title').text());
             console.log(`PLANNING INFOS: ${planningInfos.toString()}`);
@@ -45,9 +45,8 @@ function commandEdt(msg)
             // console.log(matieres.toArray());
             // console.log(infos);
             //reduce
-            let message = "```";
-            
-            insertLineBreakInd = 0;
+            let message = "```\n";
+            let first = true;
             infos.each(function (index, span) {
 
                 let $span = $(span);
@@ -59,10 +58,19 @@ function commandEdt(msg)
                 if(strId.includes('Day')||strId.includes('EvtRange')||strId.includes('EvtType')||strId.includes('EvtExamen')||strId.includes('EvtSalle')) {
                     if(strId.includes('Day')) {
                         // insertLineBreakInd = 0;
-                        message+=`\n${$span.text()}\n`.padStart(50);
+                        if(first == true) {
+                            message+=`${$span.text()}\n`.padStart(0);
+                            message+="\n".padStart(100, "-");
+                            first = false;
+                        } else {
+                            message+=`${$span.text()}\n`.padStart(0);
+                            message+="\n".padStart(100, "-");
+                            
+                        }
+                        
                     }else {
                         if(strId.includes('EvtRange')) {
-                            message+=`\n${$span.text()}`.padStart(30);
+                            message+=`* ${$span.text()}`.padStart(30);
                         }
                         if(strId.includes('EvtType')) {
                             let matiereID = " ";
@@ -84,7 +92,7 @@ function commandEdt(msg)
                             }
                         }
                         if(strId.includes('EvtSalle')) {
-                            message+=`${$span.text()}`.padStart(10);
+                            message+=`${$span.text()}\n`.padStart(10);
                         }
                     }
                     
@@ -138,11 +146,11 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply(`Pong! I'm @${client.user.tag}`);
-    }
+    // if (msg.content === 'ping') {
+    //     msg.reply(`Pong! I'm @${client.user.tag}`);
+    // }
 
-    if (msg.content === 'edt') {
+    if (msg.content === '!edt') {
         commandEdt(msg);
     }
 
