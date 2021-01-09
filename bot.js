@@ -27,7 +27,7 @@ function commandEdt(msg)
 
     request(process.env.CNAM_PLANNING_URI, function(err, res, body){
         if(err) {
-            console.log("ERROR");
+            console.log(err);
         }
         else {
             // console.log(body);
