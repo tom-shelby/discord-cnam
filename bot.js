@@ -116,7 +116,7 @@ client.on('ready', () => {
     console.log(`Bot command prefix: ${process.env.BOT_COMMAND_PREFIX}`)
 
 
-    client.user.setActivity(`${process.env.BOT_COMMAND_PREFIX}`)
+    client.user.setActivity(`${process.env.BOT_COMMAND_PREFIX} edt`)
 
 });
 
