@@ -111,15 +111,18 @@ function commandEdt(msg)
 
 // ------------
 
-
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`Bot command prefix: ${process.env.BOT_COMMAND_PREFIX}`)
+
+
+    client.user.setActivity(`${process.env.BOT_COMMAND_PREFIX}`)
+
 });
 
 client.on('message', msg => {
     if (msg.content.startsWith(process.env.BOT_COMMAND_PREFIX)) {
-        if (msg.content.includes('edt')) {
+        if (msg.content.split(' ')[1] == "edt") {
             commandEdt(msg);
         }
     }
