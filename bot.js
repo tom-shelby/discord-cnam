@@ -25,21 +25,27 @@ function commandEdt(msg)
 {
     let channel = msg.channel;
 
-    request(process.env.CNAM_PLANNING_URI, function(err, res, body){
+    request(process.env.CNAM_PLANNING_URI || config.URL, function(err, res, body){
         if(err) {
-            console.log(err);
+            console.error(err);
         }
         else {
             // console.log(body);
 
             var $ = _cheerio.load(body);
-            
             let planningInfos = `:calendar: ${$('#ctl00_MainContent_lblNavRange').text()}`;
             // console.log($('title').text());
             // channel.send($('title').text());
             // console.log(`PLANNING INFOS: ${planningInfos.toString()}`);
 
-           
+            // console.log($('div#ctl00_MainContent_pnlNoEvt').length);
+
+            if($('#ctl00_MainContent_pnlNoEvt').length) {
+                trySendToChannel(planningInfos, channel);
+                trySendToChannel('`Aucune données pour cette semaine.`', channel);
+                return;
+            }
+
 
             let infos = $('span');
             // console.log(matieres.toArray());
@@ -57,17 +63,12 @@ function commandEdt(msg)
                 
                 if(strId.includes('Day')||strId.includes('EvtRange')||strId.includes('EvtType')||strId.includes('EvtExamen')||strId.includes('EvtSalle')) {
                     if(strId.includes('Day')) {
-                        // insertLineBreakInd = 0;
                         if(first == true) {
-                            message+=`${$span.text()}\n`.padStart(0);
-                            message+="\n".padStart(100, "-");
                             first = false;
                         } else {
-                            message+=`${$span.text()}\n`.padStart(0);
-                            message+="\n".padStart(100, "-");
-                            
+                            message+="\n\n";
                         }
-                        
+                        message+=`${$span.text()}\n`.padStart(0);
                     }else {
                         if(strId.includes('EvtRange')) {
                             message+=`* ${$span.text()}`.padEnd(30);
@@ -102,28 +103,33 @@ function commandEdt(msg)
             trySendToChannel(planningInfos, channel);
             trySendToChannel(message, channel);
         }
-    }); 
+    });
+    msg.delete({timeout: 5})
+        .then(msg => console.log(`Deleted message from ${msg.author.username} after 5 seconds`))
+        .catch(console.error)
 }
 
 // ------------
 
 
 client.on('ready', () => {
-    
-
     console.log(`Logged in as ${client.user.tag}!`);
-  
+    console.log(`Bot command prefix: ${process.env.BOT_COMMAND_PREFIX}`)
 });
 
 client.on('message', msg => {
+    if (msg.content.startsWith(process.env.BOT_COMMAND_PREFIX)) {
+        if (msg.content.includes('edt')) {
+            commandEdt(msg);
+        }
+    }
+
     // if (msg.content === 'ping') {
     //     msg.reply(`Pong! I'm @${client.user.tag}`);
     // }
 
-    if (msg.content === '!edt') {
-        commandEdt(msg);
-    }
-
+    
+    console.info("Message analysé > " + msg.content);
 });
 
 client.login(process.env.BOT_TOKEN);
