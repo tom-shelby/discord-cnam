@@ -1,8 +1,6 @@
 require('dotenv').config()
 
 
-
-
 const Discord = require('discord.js')
 const client = new Discord.Client()
 client.commands = new Discord.Collection()
@@ -21,18 +19,7 @@ for (const file of commandFiles) {
 	// Creation d'un nouvel index dynamiquement 
 	client.commands.set(command.name, command)
 }
-
-// console.log(config)
-function trySendToChannel(msg = String, channel = Discord.Channel )
-{
-    if (msg != null && channel != null && msg.length > 0) {
-        channel.send(msg)
-    } else {
-        channel.send("Impossible d'envoyer le contenu demandé. Erreur interne.")
-    }
-}
-
-
+console.log('Commands loaded...')
 
 // ------------
 
@@ -44,9 +31,9 @@ client.on('ready', () => {
 
     // console.log(client.commands)
 
-    client.user.setActivity(`🛠️ En maintenance 🛠️`)
+    // client.user.setActivity(`🛠️ En maintenance 🛠️`)
 
-    client.user.setUsername("🛠️ En maintenance 🛠️")
+    // client.user.setUsername("🛠️ En maintenance 🛠️")
 
 })
 
