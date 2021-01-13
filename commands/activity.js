@@ -10,9 +10,10 @@ module.exports = {
      * @param {String} args 
      */
 	execute(message, args = "") {
-        message.client.user.setActivity(args[0])
+        let activity = args.join(" ")
+        message.client.user.setActivity(activity)
             .then(() => {
-                message.channel.send(`${message.author} vient de changer l'activité actuelle sur: ${args[0]}`)
+                message.channel.send(`${message.author} vient de changer l'activité actuelle sur: ${activity}`)
                 .then(() => {
                     message.delete({timeout: 10})
                 })
