@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 module.exports = {
     name: 'activity',
     usage: "url/message",
-    description:  `Met à jour l'activité du BOT`,
+    description: `Met à jour l'activité du BOT. Utile pour partager un lien moodle n'est-ce pas ?`,
     /**
      * 
      * @param {Discord.Message} message 
