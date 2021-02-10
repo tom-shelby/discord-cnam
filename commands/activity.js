@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 module.exports = {
     name: 'activity',
-    usage: "activity [url]",
+    usage: "[url]",
     description: `Met à jour l'activité du BOT si un paramètre est passé. Sinon récupère l'activité actuelle du BOT pour l'afficher dans le salon textuel. Pratique pour partager l'URL d'un cours.`,
     /**
      * 
