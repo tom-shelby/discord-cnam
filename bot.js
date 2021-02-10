@@ -1,9 +1,10 @@
 require('dotenv').config()
-
-
 const Discord = require('discord.js')
+require('colors')
+
 const client = new Discord.Client()
 client.commands = new Discord.Collection()
+client.jobs = new Discord.Collection()
 
 const fs = require('fs')
 const prefix = process.env.BOT_COMMAND_PREFIX
@@ -21,7 +22,7 @@ for (const file of commandFiles) {
 }
 console.log('Commands loaded...')
 
-// ------------
+// ------------------------------------------------------------------------
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
@@ -47,7 +48,8 @@ client.on('message', message => {
     //Si on ne connaît pas la commande 
     if (!client.commands.has(command)) {
         message.delete({timeout: 10, reason: "Commande inconnue"})
-        return message.channel.send(`Commande \`${command}\` inconnue. Merci quand même ${message.author}`)
+        console.log(`${message.author.username}`.yellow + ` a executer une commande inconnue: ` + `${command}`.red)
+        return message.channel.send(`Commande \`${command} ${args.toString().replace(',', ' ') || ""}\` inconnue. Merci quand même ${message.author}`)
     }
     
     try {
@@ -55,7 +57,7 @@ client.on('message', message => {
 	} catch (error) {
         console.error(error)
         message.delete({timeout: 10, reason: "Erreur lors de l'éxecution de la commande"})
-		message.channel.send(`Une erreur est survenue lors de l'éxecution de \`${command}\``)
+		message.channel.send(`Une erreur est survenue lors de l'éxecution de \`${command} ${args}\``)
 	}
     
 })

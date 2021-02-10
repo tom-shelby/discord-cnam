@@ -1,14 +1,6 @@
 const Discord = require('discord.js')
 
 
-
-
-function message() {
-    return "Pong !"
-}
-
-
-
 module.exports = {
     name: 'ping',
     description: "Ping me i'm famous",
@@ -19,7 +11,7 @@ module.exports = {
      * @param {*} args 
      */
 	execute(message, args = "") {
-        message.channel.send(message())
+        message.channel.send("Pong")
             .then(() => {
                 message.delete({timeout: 10})
             })
