@@ -31,7 +31,6 @@
         "USSI0H" : "Systèmes d'exploitation",
 
 
-
         "SLOFIP" : "Enseignements en Slovaquie",
         "UASI02" : "Expérience d'apprentissage",
         "USSI0P" : "Administration de bases de données",
@@ -58,15 +57,4 @@
         "USSI1T" : "Développement mobile",
         "USSI1U" : "Management"
     },
-
-    "commands": {
-        "edt": {
-            "help": "Affiche l'emploi du temps de la semaine actuelle dans le salon où vous vous trouvez."
-        },
-        "help" : {
-            "help": "Affiche les commandes reconnues par le bot"
-        }
-    },
-
-    "URL" : "http://qrc.gescicca.net/Planning.aspx?id=mmw7MgOktQ9Y0GRQpkF9pQ%3d%3d&annsco=2020&typepersonne=AUDITEUR"
 }
