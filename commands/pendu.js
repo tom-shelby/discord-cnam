@@ -40,6 +40,7 @@ function onGameFinish(message, data) {
 		message.channel.send(hangmanOptions.messages['noAnswersMsg']);
 	}
 }
+
 module.exports = {
 	name: 'pendu',
 	description: 'Commencer une partie de pendu. Tape sans arguments pour en savoir plus',
