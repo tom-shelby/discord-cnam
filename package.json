@@ -14,7 +14,9 @@
     "nodemon": "^2.0.7",
     "request": "^2.88.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "discord-hangman": "^1.0.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bot.js",

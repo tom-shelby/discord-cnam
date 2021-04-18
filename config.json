@@ -31,7 +31,6 @@
         "USSI0H" : "Systèmes d'exploitation",
 
 
-
         "SLOFIP" : "Enseignements en Slovaquie",
         "UASI02" : "Expérience d'apprentissage",
         "USSI0P" : "Administration de bases de données",
@@ -58,15 +57,30 @@
         "USSI1T" : "Développement mobile",
         "USSI1U" : "Management"
     },
+    "hangmanOptions": {
+        "messages": {
+            "createNoPlayers": "On ne peut plus ajouter de joueurs, peut-être plus tard...",
 
-    "commands": {
-        "edt": {
-            "help": "Affiche l'emploi du temps de la semaine actuelle dans le salon où vous vous trouvez."
-        },
-        "help" : {
-            "help": "Affiche les commandes reconnues par le bot"
+            "customNotEnoughPlayers": "Pour le mode custom, il doit y avoir au moins deux joueurs...",
+            "customInitMessage": "{players} joueurs ont rejoint la partie. Selection d'un joueur pour choisir le mot... Vérifie tes DMs!!",
+            "customNoMoreWords": "On manque de joueurs... essayez encore, je suis sûr que vous pouvez le faire.",
+
+            "gatherPlayersMsg": "Écrivez 'join' ou réagissez avec 📒 pour participer à cette partie! Vous avez 10 secondes.",
+
+            "getWordFromPlayersDm": "Tu as été choisi(e)! Écris le mot de ton choix. Tu as 30 secondes. Et garde en tête que tu ne peux plus participer à la partie.",
+            "timesUpDm": "Fin du temps impartie, tu es disqualifié(e).",
+            "timesUpMsg": "L'élu(e) n'a pas répondu... En recherche d'un(e) autre",
+            "wordSuccess": "Joli mot! Retour sur le serveur.",
+            "invalidWord": "Ce n'est pas un mot valide. Pas d'espaces et au moins 3 caractères.",
+            "tooManyInvalidsWords": "Désolé, trop de mots invalide, essaye encore lors de la prochaine partie. Tu es disqualifié(e).",
+
+            "misses": "Ratées",
+            "won": "Gagné!",
+            "gameOver": "Game over !",
+            "gameOverMsg": "Le mot était {word}",
+
+            "successMsg": "Félicitation vous avez trouvez le mot!",
+            "noAnswersMsg" : "15 minutes de passées! La partie va se terminer."
         }
-    },
-
-    "URL" : "http://qrc.gescicca.net/Planning.aspx?id=mmw7MgOktQ9Y0GRQpkF9pQ%3d%3d&annsco=2020&typepersonne=AUDITEUR"
+    }
 }
