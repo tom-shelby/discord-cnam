@@ -14,9 +14,9 @@ function onGameFinish(message, data) {
 	// If the game is cancelled or no one joins it
 	if(!data.game) return;
 
-	const user = `<@${data.selector.userID}>`;
+	// data.selector is the user who chose the word (only in custom game mode)
+	const user = data.selector;
 	if (data.game.status === 'won') {
-		// data.selector is the user who chose the word (only in custom game mode)
 		if (data.selector) message.channel.send(`${hangmanOptions.messages['successMsg'] + ' ' + user} ... Pense à un mot plus compliqué la prochaine fois!`);
 
 		else message.channel.send(hangmanOptions.messages['successMsg']);
