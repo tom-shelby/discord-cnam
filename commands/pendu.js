@@ -42,7 +42,7 @@ function onGameFinish(message, data) {
 }
 module.exports = {
 	name: 'pendu',
-	description: 'Commencer une partie de pendu',
+	description: 'Commencer une partie de pendu. Tape sans arguments pour en savoir plus',
 	usage: '[mode]',
 	/**
 	 * @param {Discord.Message} message
@@ -54,6 +54,7 @@ module.exports = {
 			const data = [];
 			data.push('Pour jouer au pendu il faut préciser le mode de jeu entre :\n');
 			data.push('> `random` : je choisi un mot au hasard\n');
+			data.push('> `random en` : pour un mot en anglais\n');
 			data.push('> `custom` : un joueur élu choisi un mot\n');
 			data.push(`\nEssai \`${prefix}pendu random\`.`);
 			return message.channel.send(data, { split: true })
