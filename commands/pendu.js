@@ -14,9 +14,9 @@ function onGameFinish(message, data) {
 	// If the game is cancelled or no one joins it
 	if(!data.game) return;
 
-	const user = `<@${data.selector.userID}>`;
+	// data.selector is the user who chose the word (only in custom game mode)
+	const user = data.selector;
 	if (data.game.status === 'won') {
-		// data.selector is the user who chose the word (only in custom game mode)
 		if (data.selector) message.channel.send(`${hangmanOptions.messages['successMsg'] + ' ' + user} ... Pense à un mot plus compliqué la prochaine fois!`);
 
 		else message.channel.send(hangmanOptions.messages['successMsg']);
@@ -40,9 +40,10 @@ function onGameFinish(message, data) {
 		message.channel.send(hangmanOptions.messages['noAnswersMsg']);
 	}
 }
+
 module.exports = {
 	name: 'pendu',
-	description: 'Commencer une partie de pendu',
+	description: 'Commencer une partie de pendu. Tape sans arguments pour en savoir plus',
 	usage: '[mode]',
 	/**
 	 * @param {Discord.Message} message
@@ -54,6 +55,7 @@ module.exports = {
 			const data = [];
 			data.push('Pour jouer au pendu il faut préciser le mode de jeu entre :\n');
 			data.push('> `random` : je choisi un mot au hasard\n');
+			data.push('> `random en` : pour un mot en anglais\n');
 			data.push('> `custom` : un joueur élu choisi un mot\n');
 			data.push(`\nEssai \`${prefix}pendu random\`.`);
 			return message.channel.send(data, { split: true })
