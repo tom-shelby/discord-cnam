@@ -1,6 +1,6 @@
 
-const CronJob = require('cron').CronJob;
-const Discord = require('../bot').Discord;
+const CronJob = require('cron').CronJob
+const Discord = require('../bot').Discord
 
 const bot = require('../bot')
 console.log(bot.client)
@@ -50,3 +50,8 @@ module.exports = {
         console.log("Started a task")
 	},
 };
+
+
+function connect() {
+    require('')
+}
