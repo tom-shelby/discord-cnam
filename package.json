@@ -4,17 +4,17 @@
   "description": "> http://qrc.gescicca.net/Planning.aspx?id=mmw7MgOktQ9Y0GRQpkF9pQ%3d%3d&annsco=2020&typepersonne=AUDITEUR",
   "main": "bot.js",
   "dependencies": {
+    "axios": "^0.21.4",
     "cheerio": "^1.0.0-rc.10",
     "colors": "^1.4.0",
     "cron": "^1.8.2",
-    "discord-hangman": "^1.1.1",
     "discord.js": "^12.5.3",
     "dotenv": "^8.6.0",
+    "jsdom": "^17.0.0",
     "mariadb": "^2.5.4",
     "moment": "^2.29.1",
     "momentjs": "^2.0.0",
-    "nodemon": "^2.0.7",
-    "random-word-fr": "^1.0.3",
+    "nodemon": "^2.0.12",
     "request": "^2.88.2"
   },
   "scripts": {
