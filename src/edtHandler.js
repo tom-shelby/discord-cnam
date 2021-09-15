@@ -54,29 +54,29 @@ class EDTHandler {
         const infosPlanning = this.parse()
         console.log("Finished parsing and handling of request")
         
-        if(!infosPlanning.semaine_details.includes(commandEdtArgs)) {
-            console.log("SENDING NEW REQUEST BC TARGET NOT REACHED")
-            axios({
-                method: 'POST',
-                url: ENV.CNAM_PLANNING_URI,
-                data: {
-                    '__VIEWSTATE': infosPlanning.viewstate,
-                    'ct100$MainContent$btnNavNext.x': '------WebKitFormBoundary7MA4YWxkTrZu0gW',
-                    'ctl00$MainContent$btnNavNext.y': '------WebKitFormBoundary7MA4YWxkTrZu0gW--'
-                },
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                }
+        // if(!infosPlanning.semaine_details.includes(commandEdtArgs)) {
+        //     console.log("SENDING NEW REQUEST BC TARGET NOT REACHED")
+        //     axios({
+        //         method: 'POST',
+        //         url: ENV.CNAM_PLANNING_URI,
+        //         data: {
+        //             '__VIEWSTATE': infosPlanning.viewstate,
+        //             'ct100$MainContent$btnNavNext.x': '------WebKitFormBoundary7MA4YWxkTrZu0gW',
+        //             'ctl00$MainContent$btnNavNext.y': '------WebKitFormBoundary7MA4YWxkTrZu0gW--'
+        //         },
+        //         headers: {
+        //             'content-type': 'application/x-www-form-urlencoded',
+        //         }
                 
-            })
-            .then(response => {
-                console.log(response)
-                // this.handle(...........);
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        }
+        //     })
+        //     .then(response => {
+        //         console.log(response)
+        //         // this.handle(...........);
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
+        // }
 
         return infosPlanning
     }
@@ -91,7 +91,7 @@ class EDTHandler {
                 planning[lastDay] = [];
             }
             else if(divCours.classList.contains('PlanningEvt')) {
-                const type = divCours.parentNode.querySelector('span.lblEvtType + span.lblEventExamen')
+                const type = divCours.querySelector('span.lblEvtType + span.lblEvtExamen')
                     ? "EXAMEN"
                     : "COURS"
                 console.log("**==Type d'event : ", type)

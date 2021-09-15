@@ -55,9 +55,10 @@ module.exports = {
         
         let message = informations
         Object.entries(infosPlanning.planning).forEach(([day, arrSchedule]) => {
-            message+= "\n\n :pushpin: __"+ day +"__:\n"
+            message+= "\n :pushpin: __**"+ day +"**__:\n"
             for(cours of arrSchedule) {
-                message+="\n " + cours.type === "EXAMEN" ? ":warning: " : ":notebook: " + cours.range + " " + cours.type + " " + cours.ue + " " + cours.salle
+                let iconType =  cours.type.includes("EXAMEN") ? ":warning:" : ":notebook:"
+                message+="\n"+ iconType + " " + cours.range + " " + cours.type + " " + cours.ue + " " + cours.salle+"\n"
             }
         })
         message+=""
