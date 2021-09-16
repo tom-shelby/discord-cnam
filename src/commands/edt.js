@@ -3,7 +3,7 @@ const axios = require('axios')
 const env = process.env
 
 
-const { EDTHandler } = require('../src/edtHandler')
+const { EDTHandler } = require('../edtHandler')
 
 function commandEdt() {
 
@@ -58,7 +58,7 @@ module.exports = {
             message+= "\n :pushpin: __**"+ day +"**__: \n"
             for(cours of arrSchedule) {
                 let iconType =  cours.type.includes("EXAMEN") ? ":warning:" : ":notebook:"
-                message+= iconType + " " + cours.range + " " + cours.type + " " + cours.ue + " " + cours.salle+"\n"
+                message+= iconType + " " + cours.range + " " + cours.type + " " + cours.ue + " : " + cours.salle+"\n"
             }
         })
         message+=""

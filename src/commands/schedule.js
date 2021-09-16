@@ -1,8 +1,8 @@
 
 const CronJob = require('cron').CronJob
-const Discord = require('../bot').Discord
+const Discord = require('../../bot').Discord
 
-const bot = require('../bot')
+const bot = require('../../bot')
 console.log(bot.client)
 module.exports = {
     name: 'schedule',
