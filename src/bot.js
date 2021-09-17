@@ -1,10 +1,15 @@
 require('dotenv').config()
-const Discord = require('discord.js')
+const { Discord, Intents, Client, Collection } = require('discord.js')
 require('colors')
 
-const client = new Discord.Client()
-client.commands = new Discord.Collection()
-client.jobs = new Discord.Collection()
+const CONFIG = require('../config.json')
+
+const client = new Client({
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
+	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+})
+client.commands = new Collection()
+client.jobs = new Collection()
 
 const fs = require('fs')
 const prefix = process.env.BOT_COMMAND_PREFIX
@@ -13,7 +18,7 @@ console.log('Loading commands...')
 /**
  * @constant {}
  */
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
+const commandFiles = fs.readdirSync('src/commands').filter(file => file.endsWith('.js'))
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`)
@@ -59,6 +64,20 @@ client.on('message', message => {
         message.delete({timeout: 10, reason: "Erreur lors de l'éxecution de la commande"})
 		message.channel.send(`Une erreur est survenue lors de l'éxecution de \`${command} ${args}\``)
 	}
+    
+})
+
+client.on('messageReactionAdd', (reaction, user) => {
+    if(user.bot) { return }
+    reaction.fetch().then(async r => {
+        if(!user.bot && r.message.channel.id === CONFIG.channels['planning'] && r._emoji.name === '🔄') {
+            const EDT = await client.commands.get('edt').execute(r.message)
+            // console.log("EDT", EDT)
+            r.message.edit(EDT)
+            r.users.remove(user)
+        }
+    })
+    console.log(reaction)
     
 })
 
