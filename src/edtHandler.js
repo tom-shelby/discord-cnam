@@ -1,6 +1,3 @@
-const request = require("request")
-const axios = require("axios")
-const ENV = process.env
 const { JSDOM } = require('jsdom')
 
 
@@ -54,6 +51,7 @@ class EDTHandler {
         const infosPlanning = this.parse()
         console.log("Finished parsing and handling of request")
         
+        return infosPlanning
         // if(!infosPlanning.semaine_details.includes(commandEdtArgs)) {
         //     console.log("SENDING NEW REQUEST BC TARGET NOT REACHED")
         //     axios({
@@ -77,8 +75,6 @@ class EDTHandler {
         //         console.log(error)
         //     })
         // }
-
-        return infosPlanning
     }
 
     parse() {
